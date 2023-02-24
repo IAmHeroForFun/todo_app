@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% block title %} Notes {% endblock title %}
+{% block content %}
+<h2>Notes</h2>
+{% for note in note_list %}
+
+<div class="d-inline-flex p-2">
+  <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <h3>{{note.title}}</h3> <p>{{note.created}}</p>
+    <h4>
+      <li>{{note.body}}</li>
+    </h4>
+      <p>{{note.status}}</p> 
+<div class="card-footer text-center text-muted">
+  <a href="{% url 'delete_note' note.pk %}">Delete</a>
+  <a href="{% url 'update_note' note.pk %}">Update</a>
+</div>
+  </div>
+</div>
+{% empty %}
+<li>No notes yet.</li>
+{% endfor %} {% endblock content %}
